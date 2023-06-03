@@ -13,8 +13,7 @@ class WeatherWeeklyList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 150,
+    return Flexible(
       child: FutureBuilder(
         future: weatherService.getWeeklyWeather(35.5068127, 139.6149964),
         builder: (context, snapshot) {

@@ -13,14 +13,15 @@ class WeatherDayWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
+        Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             SizedBox(
-              width: 50,
-              height: 50,
+              width: 100,
+              height: 100,
               child: Image.network(
                 'http://openweathermap.org/img/wn/${_weatherData['weather'][0]['icon']}.png',
+                fit: BoxFit.cover,
               ),
             ),
             Text(
@@ -52,24 +53,6 @@ class WeatherDayWidget extends StatelessWidget {
             ),
             Column(
               children: [
-                const Text('湿度'),
-                Text(
-                  '${_weatherData['main']['humidity']}%',
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
-                )
-              ],
-            ),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Column(
-              children: [
                 const Text('最高気温'),
                 Text(
                   '${_weatherData['main']['temp_max']}°C',
@@ -99,6 +82,19 @@ class WeatherDayWidget extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            Column(
+              children: [
+                const Text('湿度'),
+                Text(
+                  '${_weatherData['main']['humidity']}%',
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                )
+              ],
+            ),
             Column(
               children: [
                 const Text('風速'),

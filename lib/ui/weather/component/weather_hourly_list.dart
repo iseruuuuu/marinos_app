@@ -13,8 +13,7 @@ class WeatherHourlyList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final weatherProvider = ref.watch(hourlyWeatherProvider);
-    return SizedBox(
-      height: 150,
+    return Flexible(
       child: weatherProvider.when(
         data: (weatherList) {
           return ListView.builder(
