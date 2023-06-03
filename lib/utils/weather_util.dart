@@ -1,33 +1,4 @@
 class WeatherUtils {
-  String getWeatherImage(String weather) {
-    switch (weather) {
-      case 'Clear':
-        //晴れ
-        return 'https://illalet.com/wp-content/uploads/2017/05/16_2_19.png';
-      case 'Clouds':
-        //曇り
-        return 'https://chicodeza.com/wordpress/wp-content/uploads/kumo-illust12.png';
-      case 'Rain':
-        //雨
-        return 'https://0-00.jp/uploads/ame.png';
-      case 'Snow':
-        //雪
-        return 'https://free-icons.net/wp-content/uploads/2020/10/symbol034.png';
-      case 'Atmosphere':
-        //霧
-        return 'https://cdn.icon-icons.com/icons2/1370/PNG/512/if-weather-30-2682821_90800.png';
-      case 'Drizzle':
-        //霧雨
-        return 'https://w7.pngwing.com/pngs/390/563/png-transparent-cloud-cloudy-drizzle-forecast-rain-sun-weather-weather-icon.png';
-      case 'Thunderstorm':
-        //雷雨
-        return 'https://free-icon.org/material/01-illustration/0018-download-image-m.png';
-
-      default:
-        return 'https://illustimage.com/photo/117.png';
-    }
-  }
-
   String getWeather(String weather) {
     switch (weather) {
       case 'Clear':

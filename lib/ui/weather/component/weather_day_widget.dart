@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../utils/weather_util.dart';
 
-
 class WeatherDayWidget extends StatelessWidget {
   const WeatherDayWidget({
     super.key,
@@ -21,9 +20,7 @@ class WeatherDayWidget extends StatelessWidget {
               width: 50,
               height: 50,
               child: Image.network(
-                WeatherUtils().getWeatherImage(
-                  '${_weatherData['weather'][0]['main']}',
-                ),
+                'http://openweathermap.org/img/wn/${_weatherData['weather'][0]['icon']}.png',
               ),
             ),
             Text(

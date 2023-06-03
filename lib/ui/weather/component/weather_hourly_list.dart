@@ -59,9 +59,7 @@ class WeatherHourlyList extends ConsumerWidget {
                       width: 40,
                       height: 40,
                       child: Image.network(
-                        WeatherUtils().getWeatherImage(
-                          weatherList[index].mainWeather,
-                        ),
+                        'http://openweathermap.org/img/wn/${weatherList[index].iconId}.png',
                       ),
                     ),
                     Text(

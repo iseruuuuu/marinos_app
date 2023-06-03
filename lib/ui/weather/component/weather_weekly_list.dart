@@ -69,9 +69,7 @@ class WeatherWeeklyList extends StatelessWidget {
                         width: 40,
                         height: 40,
                         child: Image.network(
-                          WeatherUtils().getWeatherImage(
-                            weather.weather[0].main,
-                          ),
+                          'http://openweathermap.org/img/wn/${weather.weather[0].icon}.png',
                         ),
                       ),
                       Text(
