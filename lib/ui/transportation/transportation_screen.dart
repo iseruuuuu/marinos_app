@@ -3,6 +3,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:marinos_app/ui/transportation/transportation_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'component/transportation_icon_button.dart';
 
 class TransportationScreen extends ConsumerWidget {
   const TransportationScreen({Key? key}) : super(key: key);
@@ -79,13 +80,17 @@ class TransportationScreen extends ConsumerWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      IconButton(
-                        onPressed: () => transportation.state!.goBack(),
-                        icon: const Icon(Icons.arrow_back_ios_new),
+                      TransportationIconButton(
+                        transportation: transportation,
+                        future: transportation.state?.canGoBack() ??
+                            Future.value(false),
+                        icon: Icons.arrow_back_ios_new,
                       ),
-                      IconButton(
-                        onPressed: () => transportation.state!.goForward(),
-                        icon: const Icon(Icons.arrow_forward_ios),
+                      TransportationIconButton(
+                        transportation: transportation,
+                        future: transportation.state?.canGoForward() ??
+                            Future.value(false),
+                        icon: Icons.arrow_forward_ios,
                       ),
                       IconButton(
                         onPressed: () => transportation.state!.reload(),
