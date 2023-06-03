@@ -15,11 +15,12 @@ class Weather {
   @JsonKey(name: 'rain')
   final double? rainVolume;
 
-  Weather(
-      {required this.date,
-      required this.temperature,
-      required this.weather,
-      this.rainVolume});
+  Weather({
+    required this.date,
+    required this.temperature,
+    required this.weather,
+    this.rainVolume,
+  });
 
   factory Weather.fromJson(Map<String, dynamic> json) =>
       _$WeatherFromJson(json);
@@ -42,7 +43,11 @@ class Temperature {
   final double min;
   final double max;
 
-  Temperature({required this.day, required this.min, required this.max});
+  Temperature({
+    required this.day,
+    required this.min,
+    required this.max,
+  });
 
   factory Temperature.fromJson(Map<String, dynamic> json) =>
       _$TemperatureFromJson(json);
