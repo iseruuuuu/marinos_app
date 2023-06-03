@@ -24,7 +24,6 @@ class WeatherWeeklyList extends StatelessWidget {
           } else {
             final weatherList = snapshot.data as List<Weather>;
             return ListView.builder(
-              // scrollDirection: Axis.horizontal,
               itemCount: weatherList.length,
               itemBuilder: (context, index) {
                 final weather = weatherList[index];
