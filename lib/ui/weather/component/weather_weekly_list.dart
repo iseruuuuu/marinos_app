@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import '../../../api/weather_week_api.dart';
 import '../../../model/weather/weather.dart';
-import '../../../utils/weather_util.dart';
 
 class WeatherWeeklyList extends StatelessWidget {
   const WeatherWeeklyList({
@@ -27,76 +25,65 @@ class WeatherWeeklyList extends StatelessWidget {
           } else {
             final weatherList = snapshot.data as List<Weather>;
             return ListView.builder(
-              scrollDirection: Axis.horizontal,
+              // scrollDirection: Axis.horizontal,
               itemCount: weatherList.length,
               itemBuilder: (context, index) {
                 final weather = weatherList[index];
                 final date = DateTime.fromMillisecondsSinceEpoch(
                   weather.date * 1000,
                 );
-                final formattedDate = DateFormat('MM/dd').format(date);
+                final formattedDate = DateFormat('d(EE)', 'ja_JP').format(date);
                 return Container(
-                  width: 70,
-                  height: 70,
                   decoration: const BoxDecoration(
                     border: Border(
-                      left: BorderSide(
-                        color: Colors.black,
-                        width: 3,
-                      ),
-                      top: BorderSide(
-                        color: Colors.black,
-                        width: 3,
-                      ),
-                      bottom: BorderSide(
-                        color: Colors.black,
-                        width: 3,
-                      ),
+                      bottom: BorderSide(),
                     ),
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
-                        formattedDate,
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
+                  child: ListTile(
+                    leading: Text(
+                      formattedDate,
+                      style: const TextStyle(
+                        fontSize: 18,
                       ),
-                      SizedBox(
-                        width: 40,
-                        height: 40,
-                        child: Image.network(
+                    ),
+                    title: Row(
+                      children: [
+                        Image.network(
                           'http://openweathermap.org/img/wn/${weather.weather[0].icon}.png',
                         ),
-                      ),
-                      Text(
-                        '${weather.temperature.max}°C',
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.red,
+                        const Spacer(),
+                        Text(
+                          '${weather.temperature.max.toInt()}°C',
+                          textAlign: TextAlign.start,
+                          style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.red,
+                          ),
                         ),
-                      ),
-                      Text(
-                        '${weather.temperature.min}°C',
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
+                        const Spacer(),
+                        Text(
+                          '${weather.temperature.min.toInt()}°C',
+                          textAlign: TextAlign.start,
+                          style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue,
+                          ),
                         ),
-                      ),
-                      Text(
-                        ' ${weather.rainVolume ?? '0'}%',
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                        const Spacer(),
+                        Text(
+                          weather.rainVolume != null
+                              ? '${weather.rainVolume?.toInt()}%'
+                              : '0%',
+                          style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 );
               },

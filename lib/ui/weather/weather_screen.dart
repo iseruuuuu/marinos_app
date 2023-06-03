@@ -26,11 +26,30 @@ class WeatherScreen extends ConsumerWidget {
       body: Center(
         child: weatherDataAsyncValue.when(
           data: (weatherData) => Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               WeatherDayWidget(weatherData: weatherData),
-              WeatherWeeklyList(weatherService: weatherService),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: Text(
+                  'Hourly Forecast',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
               const WeatherHourlyList(),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: Text(
+                  'Weekly Forecast',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+              WeatherWeeklyList(weatherService: weatherService),
             ],
           ),
           loading: () => const CircularProgressIndicator(),
