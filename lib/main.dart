@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     const ProviderScope(child: MyApp()),
   );
