@@ -29,17 +29,13 @@ class WeatherHourlyList extends ConsumerWidget {
                 height: 70,
                 decoration: const BoxDecoration(
                   border: Border(
-                    left: BorderSide(
-                      color: Colors.black,
-                      width: 3,
-                    ),
                     top: BorderSide(
-                      color: Colors.black,
-                      width: 3,
+                      color: Colors.grey,
+                      width: 2,
                     ),
                     bottom: BorderSide(
-                      color: Colors.black,
-                      width: 3,
+                      color: Colors.grey,
+                      width: 2,
                     ),
                   ),
                 ),
