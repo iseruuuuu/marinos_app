@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:marinos_app/ui/restaurant/restaurant_screen.dart';
+import 'package:marinos_app/ui/setting/setting_screen.dart';
 import 'package:marinos_app/ui/tab/tab_provider.dart';
 import 'package:marinos_app/ui/transportation/transportation_screen.dart';
 import 'package:marinos_app/ui/weather/weather_screen.dart';
@@ -14,8 +15,9 @@ class TabScreen extends ConsumerWidget {
     return Scaffold(
       body: [
         const RestaurantScreen(),
-        TransportationScreen(),
-        WeatherScreen(),
+        const TransportationScreen(),
+        const WeatherScreen(),
+        const SettingScreen(),
       ][selectedIndex],
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
@@ -53,6 +55,10 @@ class TabScreen extends ConsumerWidget {
             BottomNavigationBarItem(
               icon: Icon(Icons.sunny),
               label: '天気',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: '設定',
             ),
           ],
           type: BottomNavigationBarType.fixed,
