@@ -33,7 +33,7 @@ migrate_working_dir/
 /build/
 
 # apikey
-lib/constants/weather_constants.dart
+lib/constants/apikey.dart
 
 # Symbolication related
 app.*.symbols
