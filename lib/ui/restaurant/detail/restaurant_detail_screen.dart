@@ -2,9 +2,12 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:marinos_app/ui/restaurant/detail/component/restaurant_list_tile.dart';
 import 'package:marinos_app/ui/restaurant/detail/restaurant_webview_screen.dart';
 import 'package:marinos_app/utils/restaurant_utils.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'component/restaurant_category_item.dart';
 
 class RestaurantDetailScreen extends StatelessWidget {
   const RestaurantDetailScreen({
@@ -19,43 +22,88 @@ class RestaurantDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(elevation: 0),
       body: Center(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(restaurants[index]['name']),
-            Text(restaurants[index]['alias']),
+            Stack(
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 300,
+                  color: Colors.grey.shade300,
+                  child: restaurants[index]['image_url'] != ""
+                      ? Image.network(
+                          restaurants[index]['image_url'],
+                          fit: BoxFit.cover,
+                        )
+                      : const Icon(Icons.fastfood),
+                ),
+                AppBar(backgroundColor: Colors.transparent),
+              ],
+            ),
             Container(
-              width: 200,
-              height: 200,
-              color: Colors.grey.shade300,
-              child: restaurants[index]['image_url'] != ""
-                  ? Image.network(
-                      restaurants[index]['image_url'],
-                      fit: BoxFit.cover,
-                    )
-                  : const Icon(Icons.fastfood),
-            ),
-            Text(restaurants[index]['location']['address1']),
-            const Text(
-              'レビュー数',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
+              color: Colors.blueAccent,
+              width: MediaQuery.of(context).size.width,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Text(
+                        restaurants[index]['alias'],
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      restaurants[index]['name'],
+                      style: const TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      restaurants[index]['location']['address1'],
+                      style: const TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        RatingBarIndicator(
+                          rating: restaurants[index]['rating'],
+                          unratedColor: Colors.white,
+                          itemSize: 25,
+                          itemBuilder: (context, index) => const Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                          ),
+                        ),
+                        const SizedBox(width: 20),
+                        Text(
+                          restaurants[index]['rating'].toString(),
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
-            RatingBarIndicator(
-              rating: restaurants[index]['rating'],
-              unratedColor: Colors.grey,
-              itemSize: 30,
-              itemBuilder: (context, index) => const Icon(
-                Icons.star,
-                color: Colors.amber,
-              ),
-            ),
-            TextButton(
-              onPressed: () async {
+            RestaurantListTile(
+              onTap: () async {
                 //TODO 電話をかける(実機で確かめる)
                 String url =
                     'tel:${RestaurantUtils().getNumber(restaurants[index]['phone'])}';
@@ -63,14 +111,13 @@ class RestaurantDetailScreen extends StatelessWidget {
                   await launchUrl(Uri.parse(url));
                 }
               },
-              child: Text(
-                RestaurantUtils().getNumber(
-                  restaurants[index]['phone'],
-                ),
+              icon: Icons.call,
+              title: RestaurantUtils().getNumber(
+                restaurants[index]['phone'],
               ),
             ),
-            TextButton(
-              onPressed: () {
+            RestaurantListTile(
+              onTap: () async {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -80,10 +127,11 @@ class RestaurantDetailScreen extends StatelessWidget {
                   ),
                 );
               },
-              child: const Text('URLを開く'),
+              icon: Icons.web,
+              title: 'サイトを開く',
             ),
-            TextButton(
-              onPressed: () async {
+            RestaurantListTile(
+              onTap: () async {
                 var latitude = restaurants[index]['coordinates']['latitude'];
                 var longitude = restaurants[index]['coordinates']['longitude'];
                 if (Platform.isIOS) {
@@ -104,39 +152,56 @@ class RestaurantDetailScreen extends StatelessWidget {
                   }
                 }
               },
-              child: const Text('Mapを開く'),
+              icon: Icons.map,
+              title: 'Mapを開く',
             ),
-            const Text(
-              'カテゴリー',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              child: Text(
+                'カテゴリー',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
               ),
             ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: restaurants[index]['categories'].length,
-                itemBuilder: (BuildContext context, int categories) {
-                  return Center(
-                    child: Column(
+            Flexible(
+              child: Container(
+                color: Colors.grey,
+                //TODO リストの上の方を詰めたい。
+                child: ListView.builder(
+                  itemCount: restaurants[index]['categories'].length,
+                  itemBuilder: (BuildContext context, int categories) {
+                    return Column(
                       children: [
-                        Text(
-                          restaurants[index]['categories'][categories]['title'],
-                          style: const TextStyle(
-                            fontSize: 20,
-                          ),
-                        ),
-                        Text(
-                          restaurants[index]['categories'][categories]['alias'],
-                          style: const TextStyle(
-                            fontSize: 20,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 5),
+                          child: Wrap(
+                            runSpacing: 16,
+                            spacing: 16,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  RestaurantCategoryItem(
+                                    category: restaurants[index]['categories']
+                                        [categories]['title'],
+                                  ),
+                                  RestaurantCategoryItem(
+                                    category: restaurants[index]['categories']
+                                        [categories]['alias'],
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                       ],
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
             ),
           ],
