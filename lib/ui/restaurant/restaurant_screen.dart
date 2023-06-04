@@ -71,7 +71,7 @@ class RestaurantScreen extends ConsumerWidget {
             },
           );
         },
-        loading: () => const CircularProgressIndicator(),
+        loading: () => const Center(child: CircularProgressIndicator()),
         error: (_, __) => const Center(child: Text('An error occurred')),
       ),
     );
