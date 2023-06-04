@@ -1,13 +1,11 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:marinos_app/ui/restaurant/detail/component/restaurant_list_tile.dart';
+import 'package:marinos_app/ui/restaurant/component/restaurant_list_tile.dart';
+import 'package:marinos_app/ui/restaurant/component/restaurant_title_item.dart';
 import 'package:marinos_app/ui/restaurant/detail/restaurant_webview_screen.dart';
 import 'package:marinos_app/utils/restaurant_utils.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import 'component/restaurant_category_item.dart';
+import '../component/restaurant_category_item.dart';
 
 class RestaurantDetailScreen extends StatelessWidget {
   const RestaurantDetailScreen({
@@ -42,65 +40,11 @@ class RestaurantDetailScreen extends StatelessWidget {
                 AppBar(backgroundColor: Colors.transparent),
               ],
             ),
-            Container(
-              color: Colors.blueAccent,
-              width: MediaQuery.of(context).size.width,
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      child: Text(
-                        restaurants[index]['alias'],
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      restaurants[index]['name'],
-                      style: const TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                    Text(
-                      restaurants[index]['location']['address1'],
-                      style: const TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        RatingBarIndicator(
-                          rating: restaurants[index]['rating'],
-                          unratedColor: Colors.white,
-                          itemSize: 25,
-                          itemBuilder: (context, index) => const Icon(
-                            Icons.star,
-                            color: Colors.amber,
-                          ),
-                        ),
-                        const SizedBox(width: 20),
-                        Text(
-                          restaurants[index]['rating'].toString(),
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+            RestaurantTitleItem(
+              restaurant: restaurants[index]['alias'],
+              restaurantName: restaurants[index]['name'],
+              address: restaurants[index]['location']['address1'],
+              rate: restaurants[index]['rating'],
             ),
             RestaurantListTile(
               onTap: () async {
