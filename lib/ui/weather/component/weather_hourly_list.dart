@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:marinos_app/ui/weather/weather_provider.dart';
-import '../../../model/weather/weather_hourly.dart';
-import '../../../utils/weather_util.dart';
 
 class WeatherHourlyList extends ConsumerWidget {
   const WeatherHourlyList({

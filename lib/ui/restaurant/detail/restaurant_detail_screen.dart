@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:marinos_app/ui/restaurant/detail/restaurant_webview_screen.dart';
+import 'package:marinos_app/utils/restaurant_utils.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class RestaurantDetailScreen extends StatelessWidget {
   const RestaurantDetailScreen({
@@ -50,9 +53,21 @@ class RestaurantDetailScreen extends StatelessWidget {
                 color: Colors.amber,
               ),
             ),
-            //TODO 電話番号を日本版に直したい。
-            Text(restaurants[index]['phone']),
-            Text(restaurants[index]['display_phone']),
+            TextButton(
+              onPressed: () async {
+                //TODO 電話をかける(実機で確かめる)
+                String url =
+                    'tel:${RestaurantUtils().getNumber(restaurants[index]['phone'])}';
+                if (await canLaunchUrl(Uri.parse(url))) {
+                  await launchUrl(Uri.parse(url));
+                }
+              },
+              child: Text(
+                RestaurantUtils().getNumber(
+                  restaurants[index]['phone'],
+                ),
+              ),
+            ),
             //TODO カテゴリーをたくさん取得できるようにしたい。
             Text(restaurants[index]['categories'][0]['title']),
             Text(restaurants[index]['categories'][0]['alias']),
