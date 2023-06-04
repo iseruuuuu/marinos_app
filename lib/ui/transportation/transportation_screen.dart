@@ -3,7 +3,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:marinos_app/ui/transportation/transportation_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'component/transportation_icon_button.dart';
+import '../component/app_icon_button.dart';
 
 class TransportationScreen extends ConsumerWidget {
   const TransportationScreen({Key? key}) : super(key: key);
@@ -11,7 +11,7 @@ class TransportationScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final transportation = ref.watch(transportationProvider.notifier);
-    final isLoading = ref.watch(loadingProvider);
+    final isLoading = ref.watch(transportationLoadingProvider);
     return SafeArea(
       top: false,
       child: Scaffold(
@@ -28,10 +28,10 @@ class TransportationScreen extends ConsumerWidget {
                       transportation.state = controller;
                     },
                     onLoadStart: (controller, url) {
-                      ref.read(loadingProvider.notifier).setLoading(true);
+                      ref.read(transportationLoadingProvider.notifier).setLoading(true);
                     },
                     onLoadStop: (controller, url) {
-                      ref.read(loadingProvider.notifier).setLoading(false);
+                      ref.read(transportationLoadingProvider.notifier).setLoading(false);
                     },
                     initialUrlRequest: URLRequest(
                       url: Uri.parse(
@@ -80,14 +80,14 @@ class TransportationScreen extends ConsumerWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      TransportationIconButton(
-                        transportation: transportation,
+                      AppIconButton(
+                        stateController: transportation,
                         future: transportation.state?.canGoBack() ??
                             Future.value(false),
                         icon: Icons.arrow_back_ios_new,
                       ),
-                      TransportationIconButton(
-                        transportation: transportation,
+                      AppIconButton(
+                        stateController: transportation,
                         future: transportation.state?.canGoForward() ??
                             Future.value(false),
                         icon: Icons.arrow_forward_ios,

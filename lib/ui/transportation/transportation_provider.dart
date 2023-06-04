@@ -1,15 +1,17 @@
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final transportationProvider =
-    StateProvider<InAppWebViewController?>((_) => null);
-
-final loadingProvider = StateNotifierProvider<LoadingNotifier, bool>(
-  (_) => LoadingNotifier(),
+final transportationProvider = StateProvider<InAppWebViewController?>(
+  (_) => null,
 );
 
-class LoadingNotifier extends StateNotifier<bool> {
-  LoadingNotifier() : super(false);
+final transportationLoadingProvider =
+    StateNotifierProvider<TransportationLoadingNotifier, bool>(
+  (_) => TransportationLoadingNotifier(),
+);
+
+class TransportationLoadingNotifier extends StateNotifier<bool> {
+  TransportationLoadingNotifier() : super(false);
 
   void setLoading(bool isLoading) {
     state = isLoading;

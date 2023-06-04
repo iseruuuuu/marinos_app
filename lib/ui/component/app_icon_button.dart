@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class TransportationIconButton extends StatelessWidget {
-  const TransportationIconButton({
+class AppIconButton extends StatelessWidget {
+  const AppIconButton({
     super.key,
-    required this.transportation,
+    required this.stateController,
     required this.future,
     required this.icon,
   });
 
-  final StateController<InAppWebViewController?> transportation;
+  final StateController<InAppWebViewController?> stateController;
   final Future<bool>? future;
   final IconData icon;
 
@@ -38,7 +38,7 @@ class TransportationIconButton extends StatelessWidget {
           );
         } else {
           return IconButton(
-            onPressed: () => transportation.state!.goBack(),
+            onPressed: () => stateController.state!.goBack(),
             icon: Icon(
               icon,
               color: snapshot.data! ? Colors.black : Colors.grey,
