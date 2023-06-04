@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:marinos_app/ui/restaurant/detail/restaurant_webview_screen.dart';
@@ -80,12 +82,27 @@ class RestaurantDetailScreen extends StatelessWidget {
               },
               child: const Text('URLを開く'),
             ),
-
             TextButton(
-              onPressed: () {
-                //TODO Mapを開く
-
-                //TODO iOS/Androidの既存のMapを開く？
+              onPressed: () async {
+                var latitude = restaurants[index]['coordinates']['latitude'];
+                var longitude = restaurants[index]['coordinates']['longitude'];
+                if (Platform.isIOS) {
+                  String appleUrl =
+                      'http://maps.apple.com/?q=$latitude,$longitude';
+                  if (await canLaunch(appleUrl)) {
+                    await launch(appleUrl);
+                  } else {
+                    throw 'Could not launch $appleUrl';
+                  }
+                } else {
+                  String googleUrl =
+                      'https://www.google.com/maps/search/?api=1&query=$latitude,$longitude';
+                  if (await canLaunch(googleUrl)) {
+                    await launch(googleUrl);
+                  } else {
+                    throw 'Could not launch $googleUrl';
+                  }
+                }
               },
               child: const Text('Mapを開く'),
             ),
