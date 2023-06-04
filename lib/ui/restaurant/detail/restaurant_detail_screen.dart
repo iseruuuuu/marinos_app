@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:marinos_app/ui/restaurant/detail/restaurant_webview_screen.dart';
 import 'package:marinos_app/utils/restaurant_utils.dart';
@@ -68,10 +67,6 @@ class RestaurantDetailScreen extends StatelessWidget {
                 ),
               ),
             ),
-            //TODO カテゴリーをたくさん取得できるようにしたい。
-            Text(restaurants[index]['categories'][0]['title']),
-            Text(restaurants[index]['categories'][0]['alias']),
-            Text(restaurants[index]['categories'].toString()),
             TextButton(
               onPressed: () {
                 Navigator.push(
@@ -84,6 +79,48 @@ class RestaurantDetailScreen extends StatelessWidget {
                 );
               },
               child: const Text('URLを開く'),
+            ),
+
+            TextButton(
+              onPressed: () {
+                //TODO Mapを開く
+
+                //TODO iOS/Androidの既存のMapを開く？
+              },
+              child: const Text('Mapを開く'),
+            ),
+            const Text(
+              'カテゴリー',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: restaurants[index]['categories'].length,
+                itemBuilder: (BuildContext context, int categories) {
+                  return Center(
+                    child: Column(
+                      children: [
+                        Text(
+                          restaurants[index]['categories'][categories]['title'],
+                          style: const TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                        Text(
+                          restaurants[index]['categories'][categories]['alias'],
+                          style: const TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
             ),
           ],
         ),
