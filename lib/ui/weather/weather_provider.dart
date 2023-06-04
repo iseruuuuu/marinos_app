@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:marinos_app/api/weather_hourly_api.dart';
-import 'package:marinos_app/api/weather_week_api.dart';
+import 'package:marinos_app/api/weather/weather_hourly_api.dart';
 import 'package:marinos_app/model/weather/weather_hourly.dart';
+import '../../api/weather/weather_week_api.dart';
 import '../../constants/weather_constants.dart';
 import 'package:http/http.dart' as http;
 
