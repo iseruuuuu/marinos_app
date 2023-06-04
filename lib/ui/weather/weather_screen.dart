@@ -13,13 +13,16 @@ class WeatherScreen extends ConsumerWidget {
     final weatherService = ref.watch(weatherServiceProvider);
     final weatherDataAsyncValue = ref.watch(weatherDataFutureProvider);
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
+        backgroundColor: Colors.white,
         title: const Text(
-          '新横浜の天気情報',
+          '日産スタジアムの天気',
           style: TextStyle(
+            fontSize: 15,
             fontWeight: FontWeight.bold,
-            fontSize: 20,
+            color: Colors.black,
           ),
         ),
       ),

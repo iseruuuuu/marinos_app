@@ -10,7 +10,19 @@ class RestaurantScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final restaurantListAsyncValue = ref.watch(restaurantProvider);
     return Scaffold(
-      appBar: AppBar(elevation: 0),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        title: const Text(
+          '日産スタジアム周辺のレストラン',
+          style: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
+      ),
       body: restaurantListAsyncValue.when(
         data: (restaurants) {
           return ListView.builder(

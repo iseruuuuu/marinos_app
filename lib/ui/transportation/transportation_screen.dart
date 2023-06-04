@@ -15,8 +15,18 @@ class TransportationScreen extends ConsumerWidget {
     return SafeArea(
       top: false,
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           elevation: 0,
+          backgroundColor: Colors.white,
+          title: const Text(
+            '交通案内',
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
         ),
         body: Stack(
           children: [
@@ -28,10 +38,14 @@ class TransportationScreen extends ConsumerWidget {
                       transportation.state = controller;
                     },
                     onLoadStart: (controller, url) {
-                      ref.read(transportationLoadingProvider.notifier).setLoading(true);
+                      ref
+                          .read(transportationLoadingProvider.notifier)
+                          .setLoading(true);
                     },
                     onLoadStop: (controller, url) {
-                      ref.read(transportationLoadingProvider.notifier).setLoading(false);
+                      ref
+                          .read(transportationLoadingProvider.notifier)
+                          .setLoading(false);
                     },
                     initialUrlRequest: URLRequest(
                       url: Uri.parse(

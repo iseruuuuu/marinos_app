@@ -10,7 +10,18 @@ class SettingScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(elevation: 0, backgroundColor: const Color(0xFFF2F2F7)),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: const Color(0xFFF2F2F7),
+        title: const Text(
+          '設定',
+          style: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
+      ),
       body: Column(
         children: [
           Expanded(
