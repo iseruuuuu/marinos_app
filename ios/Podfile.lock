@@ -9,6 +9,8 @@ PODS:
     - OrderedSet (~> 5.0)
   - flutter_localization (0.0.1):
     - Flutter
+  - flutter_native_splash (0.0.1):
+    - Flutter
   - in_app_review (0.2.0):
     - Flutter
   - OrderedSet (5.0.0)
@@ -26,6 +28,7 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutter_inappwebview (from `.symlinks/plugins/flutter_inappwebview/ios`)
   - flutter_localization (from `.symlinks/plugins/flutter_localization/ios`)
+  - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
   - in_app_review (from `.symlinks/plugins/in_app_review/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - share (from `.symlinks/plugins/share/ios`)
@@ -43,6 +46,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_inappwebview/ios"
   flutter_localization:
     :path: ".symlinks/plugins/flutter_localization/ios"
+  flutter_native_splash:
+    :path: ".symlinks/plugins/flutter_native_splash/ios"
   in_app_review:
     :path: ".symlinks/plugins/in_app_review/ios"
   package_info_plus:
@@ -58,6 +63,7 @@ SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_inappwebview: bfd58618f49dc62f2676de690fc6dcda1d6c3721
   flutter_localization: f43b18844a2b3d2c71fd64f04ffd6b1e64dd54d4
+  flutter_native_splash: 52501b97d1c0a5f898d687f1646226c1f93c56ef
   in_app_review: 318597b3a06c22bb46dc454d56828c85f444f99d
   OrderedSet: aaeb196f7fef5a9edf55d89760da9176ad40b93c
   package_info_plus: fd030dabf36271f146f1f3beacd48f564b0f17f7
