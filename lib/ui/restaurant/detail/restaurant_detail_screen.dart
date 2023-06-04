@@ -60,7 +60,7 @@ class RestaurantDetailScreen extends StatelessWidget {
             ),
           ),
           RestaurantListTile(
-            onTap: () async {
+            onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(

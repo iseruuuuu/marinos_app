@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:marinos_app/constants/weather_constants.dart';
+import '../../constants/apikey.dart';
 import '../../model/weather/weather_hourly.dart';
 
 class WeatherHourlyService {

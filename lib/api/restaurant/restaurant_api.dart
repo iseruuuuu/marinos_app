@@ -1,7 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
-import 'package:marinos_app/constants/restaurant_constants.dart';
+import '../../constants/apikey.dart';
 
 class YelpService {
   final String _apiKey = RestaurantConstants.restaurantApikey;
