@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:marinos_app/ui/restaurant/detail/restaurant_webview_screen.dart';
 
 class RestaurantDetailScreen extends StatelessWidget {
@@ -32,8 +33,23 @@ class RestaurantDetailScreen extends StatelessWidget {
                   : const Icon(Icons.fastfood),
             ),
             Text(restaurants[index]['location']['address1']),
-            //TODO 評価をStarにしたい。
-            Text('Rating: ${restaurants[index]['rating']}'),
+            const Text(
+              'レビュー数',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
+            RatingBarIndicator(
+              rating: restaurants[index]['rating'],
+              unratedColor: Colors.grey,
+              itemSize: 30,
+              itemBuilder: (context, index) => const Icon(
+                Icons.star,
+                color: Colors.amber,
+              ),
+            ),
             //TODO 電話番号を日本版に直したい。
             Text(restaurants[index]['phone']),
             Text(restaurants[index]['display_phone']),

@@ -21,6 +21,7 @@ dependencies:
   flutter_localization: ^0.1.11
   flutter_inappwebview: ^5.7.2+3
   url_launcher: ^6.1.7
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:
