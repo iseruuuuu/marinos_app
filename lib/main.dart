@@ -3,7 +3,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:marinos_app/ui/tab/tab_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      localizationsDelegates: [
+      localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
@@ -25,10 +24,9 @@ class MyApp extends StatelessWidget {
       supportedLocales: const [
         Locale('ja', 'JP'),
       ],
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(brightness: Brightness.light),
+      darkTheme: ThemeData(brightness: Brightness.light),
       home: const TabScreen(),
     );
   }
